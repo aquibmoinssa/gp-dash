@@ -31,26 +31,15 @@ col3.metric("Humidity", "86%", "4%")
 
 # Row B
 
-# Load the JSON file to check its format
-file_path = 'https://drive.google.com/uc?export=download&id=1HccDVUokzQ8WnG4XNLD1Du_IfT2B63Wq'
+# URL to the JSON file on Google Drive
+file_url = 'https://drive.google.com/uc?export=download&id=1HccDVUokzQ8WnG4XNLD1Du_IfT2B63Wq'
 
-try:
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-    json_valid = True
-except json.JSONDecodeError as e:
-    json_valid = False
-    error_message = str(e)
-
-json_valid, error_message if not json_valid else "No errors"
+# Load the JSON file directly into a DataFrame
+data = pd.read_json(file_url)
 
 # Extract the relevant data for plotting
-epochs = []
-periods = []
-
-for entry in data:
-    epochs.append(entry['EPOCH'])
-    periods.append(float(entry['PERIOD']))
+epochs = data['EPOCH']
+periods = data['PERIOD'].astype(float)
 
 # Convert epochs to a datetime format for better plotting
 epochs = pd.to_datetime(epochs)
