@@ -12,7 +12,7 @@ with open('style.css') as f:
 st.sidebar.header('GP Dashboard')
 
 st.sidebar.subheader('Heat map parameters')
-time_hist_color = st.sidebar.selectbox('Color by', ('temp_min', 'temp_max')) 
+#time_hist_color = st.sidebar.selectbox('Color by', ('temp_min', 'temp_max')) 
 
 st.sidebar.subheader('Donut chart parameters')
 donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
