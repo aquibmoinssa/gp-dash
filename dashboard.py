@@ -19,8 +19,8 @@ donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
 
 st.sidebar.subheader('Line chart parameters')
 # Sidebar slider to specify plot height
-plot_height = st.sidebar.slider('Specify plot height', 200, 500, 250)
-plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
+plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
+#plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
 
 
 
@@ -81,10 +81,10 @@ st.title('Orbital Period of Hubble Space Telescope Over Time')
 # Create an Altair chart with customizable height and width
 chart = alt.Chart(df).mark_line().encode(
     x=alt.X('Epoch:T', title='Epoch'),
-    y=alt.Y('Period:Q', title='Orbital Period (minutes)')
+    y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[90, 100]))
 ).properties(
     height=plot_height,
-    width=plot_width  # Adjust width as well
+    width=700  # Adjust width as well
 )
 
 # Display the chart in the Streamlit app
