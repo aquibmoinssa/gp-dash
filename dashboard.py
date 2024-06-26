@@ -18,7 +18,7 @@ donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
 
 st.sidebar.subheader('Line chart parameters')
 #plot_data = st.sidebar.multiselect('Select data', ['temp_min', 'temp_max'], ['temp_min', 'temp_max'])
-plot_height = st.sidebar.slider('Specify plot height', 200, 500, 250)
+plot_height = st.sidebar.slider('Specify plot height', 90, 100, 95)
 
 
 
