@@ -42,17 +42,13 @@ data = pd.read_json(file_url)
 # Extract the relevant data for plotting
 epochs = data['EPOCH']
 periods = data['PERIOD'].astype(float)
-
-# Extract the relevant data for plotting
-data['Epoch'] = pd.to_datetime(data['EPOCH'])
-data['Mean Motion'] = data['MEAN_MOTION'].astype(float)
-data['Eccentricity'] = data['ECCENTRICITY'].astype(float)
+eccentricity = data['ECCENTRICITY'].astype(float)
 
 # Convert epochs to a datetime format for better plotting
 epochs = pd.to_datetime(epochs)
 
 # Create a DataFrame for easier manipulation
-df = pd.DataFrame({'Epoch': epochs, 'Period': periods})
+df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentricity})
 
 seattle_weather = pd.read_csv('https://raw.githubusercontent.com/tvst/plost/master/data/seattle-weather.csv', parse_dates=['date'])
 stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
@@ -60,7 +56,7 @@ stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/maste
 c1, c2 = st.columns((7,3))
 with c1:
     # Create a heatmap for Eccentricity
-    heatmap_eccentricity = alt.Chart(data).mark_rect().encode(
+    heatmap_eccentricity = alt.Chart(df).mark_rect().encode(
         x='yearmonthdate(Epoch):O',
         y='hour(Epoch):O',
         color='Eccentricity:Q'
