@@ -84,5 +84,5 @@ with c2:
         use_container_width=True)
 
 # Row C
-st.markdown('### Line chart')
+st.markdown('### HST Orbit')
 st.line_chart(df.set_index('Epoch')['Period'], height = plot_height)
