@@ -18,7 +18,7 @@ donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
 
 st.sidebar.subheader('Line chart parameters')
 #plot_data = st.sidebar.multiselect('Select data', ['temp_min', 'temp_max'], ['temp_min', 'temp_max'])
-plot_height = st.sidebar.slider('Specify plot height', 90, 100, 95)
+#plot_height = st.sidebar.slider('Specify plot height', 90, 100, 95)
 
 
 
@@ -74,4 +74,4 @@ with c2:
 
 # Row C
 st.markdown('### HST Orbit')
-st.line_chart(df.set_index('Epoch')['Period'], height = plot_height)
+st.line_chart(df.set_index('Epoch')['Period'])
