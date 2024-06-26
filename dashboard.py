@@ -43,6 +43,11 @@ data = pd.read_json(file_url)
 epochs = data['EPOCH']
 periods = data['PERIOD'].astype(float)
 
+# Extract the relevant data for plotting
+data['Epoch'] = pd.to_datetime(data['EPOCH'])
+data['Mean Motion'] = data['MEAN_MOTION'].astype(float)
+data['Eccentricity'] = data['ECCENTRICITY'].astype(float)
+
 # Convert epochs to a datetime format for better plotting
 epochs = pd.to_datetime(epochs)
 
@@ -54,17 +59,14 @@ stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/maste
 
 c1, c2 = st.columns((7,3))
 with c1:
-    st.markdown('### Heatmap')
-    plost.time_hist(
-    data=seattle_weather,
-    date='date',
-    x_unit='week',
-    y_unit='day',
-    color=time_hist_color,
-    aggregate='median',
-    legend=None,
-    height=345,
-    use_container_width=True)
+    # Create a heatmap for Eccentricity
+    heatmap_eccentricity = alt.Chart(data).mark_rect().encode(
+        x='yearmonthdate(Epoch):O',
+        y='hour(Epoch):O',
+        color='Eccentricity:Q'
+    ).properties(
+        title='Heatmap of Eccentricity Over Time'
+    )
 with c2:
     st.markdown('### Donut chart')
     plost.donut_chart(
