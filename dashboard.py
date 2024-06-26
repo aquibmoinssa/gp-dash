@@ -81,7 +81,7 @@ st.title('Orbital Period of Hubble Space Telescope Over Time')
 # Create an Altair chart with customizable height and width
 chart = alt.Chart(df).mark_line().encode(
     x=alt.X('Epoch:T', title='Epoch'),
-    y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94, 96]))
+    y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2]))
 ).properties(
     height=plot_height,
     width=700  # Adjust width as well
