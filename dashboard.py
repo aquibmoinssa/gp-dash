@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plost
 import json
+import altair as alt
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
@@ -17,8 +18,9 @@ st.sidebar.subheader('Donut chart parameters')
 donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
 
 st.sidebar.subheader('Line chart parameters')
-#plot_data = st.sidebar.multiselect('Select data', ['temp_min', 'temp_max'], ['temp_min', 'temp_max'])
-#plot_height = st.sidebar.slider('Specify plot height', 90, 100, 95)
+# Sidebar slider to specify plot height
+plot_height = st.sidebar.slider('Specify plot height', 200, 500, 250)
+plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
 
 
 
@@ -73,5 +75,20 @@ with c2:
         use_container_width=True)
 
 # Row C
-st.markdown('### HST Orbit')
-st.line_chart(df.set_index('Epoch')['Period'])
+# Set up the Streamlit app
+st.title('Orbital Period of Hubble Space Telescope Over Time')
+
+# Create an Altair chart with customizable height and width
+chart = alt.Chart(df).mark_line().encode(
+    x=alt.X('Epoch:T', title='Epoch'),
+    y=alt.Y('Period:Q', title='Orbital Period (minutes)')
+).properties(
+    height=plot_height,
+    width=plot_width  # Adjust width as well
+)
+
+# Display the chart in the Streamlit app
+st.altair_chart(chart, use_container_width=True)
+
+#st.markdown('### HST Orbit')
+#st.line_chart(df.set_index('Epoch')['Period'])
