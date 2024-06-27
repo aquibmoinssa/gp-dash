@@ -106,11 +106,11 @@ with c3:
 with c4:
     st.markdown('### HST Inclination June 2023 - June 2024')
     line_chart_inclination = alt.Chart(df).mark_line(color='red').encode(
-        x='Epoch:T',
-        y='Inclination:Q'
+        x=alt.X('Epoch:T', title='Epoch'),
+        y=alt.Y('Inclination:Q', title='Inclination', scale=alt.Scale(domain=[25, 30]))
     ).properties(
-        width=600,
-        height=400
+        height=400,
+        width=600  # Adjust width as well
     )
     st.altair_chart(line_chart_inclination, use_container_width=True)
 
