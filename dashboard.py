@@ -59,7 +59,7 @@ df = pd.DataFrame({
     'Mean Anomaly': mean_anomaly,
     'Mean Motion': mean_motion,
     'Mean Motion Dot': mean_motion_dot,
-    'Mean Motion DDot': mean_motion_odot
+    'Mean Motion DDot': mean_motion_ddot
 })
 
 # Create two columns
