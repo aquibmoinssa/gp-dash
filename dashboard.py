@@ -103,7 +103,7 @@ with c3:
 
 with c4:
     st.markdown('### % Change')
-    pie_chart = alt.Chart(std_devs).mark_arc().encode(
+    pie_chart = alt.Chart(percentage_changes).mark_arc().encode(
         theta=alt.Theta(field='Percentage Change', type='quantitative'),
         color=alt.Color(field='Parameter', type='nominal'),
         tooltip=['Parameter', 'Percentage Change']
