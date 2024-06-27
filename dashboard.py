@@ -47,6 +47,7 @@ mean_anomaly = data['MEAN_ANOMALY'].astype(float)
 mean_motion = data['MEAN_MOTION'].astype(float)
 mean_motion_dot = data['MEAN_MOTION_DOT'].astype(float)
 mean_motion_ddot = data['MEAN_MOTION_DDOT'].astype(float)
+inclination = data['INCLINATION'].astype(float)
 
 # Convert epochs to a datetime format for better plotting
 epochs = pd.to_datetime(epochs)
@@ -60,6 +61,7 @@ df = pd.DataFrame({
     'Mean Motion': mean_motion,
     'Mean Motion Dot': mean_motion_dot,
     'Mean Motion DDot': mean_motion_ddot
+    'Inclination': inclination
 })
 
 # Create two columns
@@ -102,18 +104,14 @@ with c3:
     st.altair_chart(chart, use_container_width=True)
 
 with c4:
-    st.markdown('### Line Chart of Mean Motion Parameters Over Time')
-    line_chart_mean_motion = alt.Chart(df).transform_fold(
-        ['Mean Motion', 'Mean Motion Dot', 'Mean Motion ODot'],
-        as_=['Parameter', 'Value']
-    ).mark_line().encode(
+    st.markdown('### HST Inclination June 2023 - June 2024')
+    line_chart_inclination = alt.Chart(df).mark_line(color='red').encode(
         x='Epoch:T',
-        y='Value:Q',
-        color='Parameter:N'
+        y='Inclination:Q'
     ).properties(
         width=600,
         height=400
     )
-    st.altair_chart(line_chart_mean_motion, use_container_width=True)
+    st.altair_chart(line_chart_inclination, use_container_width=True)
 
 
