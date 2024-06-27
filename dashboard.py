@@ -44,22 +44,22 @@ epochs = data['EPOCH']
 periods = data['PERIOD'].astype(float)
 eccentricity = data['ECCENTRICITY'].astype(float)
 mean_anomaly = data['MEAN_ANOMALY'].astype(float)
+mean_motion = data['MEAN_MOTION'].astype(float)
+mean_motion_dot = data['MEAN_MOTION_DOT'].astype(float)
+mean_motion_ddot = data['MEAN_MOTION_DDOT'].astype(float)
 
 # Convert epochs to a datetime format for better plotting
 epochs = pd.to_datetime(epochs)
 
 # Create a DataFrame for easier manipulation
-df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentricity, 'Mean Anomaly': mean_anomaly})
-
-# Calculate percentage change from min to max for each variable
-percentage_change_period = ((df['Period'].max() - df['Period'].min()) / df['Period'].min()) * 100
-percentage_change_eccentricity = ((df['Eccentricity'].max() - df['Eccentricity'].min()) / df['Eccentricity'].min()) * 100
-percentage_change_mean_anomaly = ((df['Mean Anomaly'].max() - df['Mean Anomaly'].min()) / df['Mean Anomaly'].min()) * 100
-
-# Create a DataFrame to hold the percentage changes
-percentage_changes = pd.DataFrame({
-    'Parameter': ['Period', 'Eccentricity', 'Mean Anomaly'],
-    'Percentage Change': [percentage_change_period, percentage_change_eccentricity, percentage_change_mean_anomaly]
+df = pd.DataFrame({
+    'Epoch': epochs,
+    'Period': periods,
+    'Eccentricity': eccentricity,
+    'Mean Anomaly': mean_anomaly,
+    'Mean Motion': mean_motion,
+    'Mean Motion Dot': mean_motion_dot,
+    'Mean Motion DDot': mean_motion_odot
 })
 
 # Create two columns
