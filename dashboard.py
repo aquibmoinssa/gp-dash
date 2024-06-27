@@ -51,15 +51,15 @@ epochs = pd.to_datetime(epochs)
 # Create a DataFrame for easier manipulation
 df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentricity, 'Mean Anomaly': mean_anomaly})
 
-# Calculate standard deviations
-std_dev_period = df['Period'].std()
-std_dev_eccentricity = df['Eccentricity'].std()
-std_dev_mean_anomaly = df['Mean Anomaly'].std()
+# Calculate percentage change from min to max for each variable
+percentage_change_period = ((df['Period'].max() - df['Period'].min()) / df['Period'].min()) * 100
+percentage_change_eccentricity = ((df['Eccentricity'].max() - df['Eccentricity'].min()) / df['Eccentricity'].min()) * 100
+percentage_change_mean_anomaly = ((df['Mean Anomaly'].max() - df['Mean Anomaly'].min()) / df['Mean Anomaly'].min()) * 100
 
-# Create a DataFrame to hold the standard deviations
-std_devs = pd.DataFrame({
+# Create a DataFrame to hold the percentage changes
+percentage_changes = pd.DataFrame({
     'Parameter': ['Period', 'Eccentricity', 'Mean Anomaly'],
-    'Standard Deviation': [std_dev_period, std_dev_eccentricity, std_dev_mean_anomaly]
+    'Percentage Change': [percentage_change_period, percentage_change_eccentricity, percentage_change_mean_anomaly]
 })
 
 # Create two columns
@@ -102,11 +102,11 @@ with c3:
     st.altair_chart(chart, use_container_width=True)
 
 with c4:
-    st.markdown('### Standard Deviations of Parameters')
+    st.markdown('### % Change')
     pie_chart = alt.Chart(std_devs).mark_arc().encode(
-        theta=alt.Theta(field='Standard Deviation', type='quantitative'),
+        theta=alt.Theta(field='Percentage Change', type='quantitative'),
         color=alt.Color(field='Parameter', type='nominal'),
-        tooltip=['Parameter', 'Standard Deviation']
+        tooltip=['Parameter', 'Percentage Change']
     ).properties(
         width=400,
         height=400
