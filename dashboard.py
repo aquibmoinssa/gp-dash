@@ -43,12 +43,13 @@ data = pd.read_json(file_url)
 epochs = data['EPOCH']
 periods = data['PERIOD'].astype(float)
 eccentricity = data['ECCENTRICITY'].astype(float)
+mean_anomaly = data['MEAN_ANOMALY'].astype(float)
 
 # Convert epochs to a datetime format for better plotting
 epochs = pd.to_datetime(epochs)
 
 # Create a DataFrame for easier manipulation
-df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentricity})
+df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentricity, 'Mean Anomaly': mean_anomaly})
 
 seattle_weather = pd.read_csv('https://raw.githubusercontent.com/tvst/plost/master/data/seattle-weather.csv', parse_dates=['date'])
 stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
@@ -57,10 +58,10 @@ stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/maste
 c1, c2 = st.columns((5, 5))
 
 with c1:
-    st.markdown('### Line Chart of Period Over Time')
+    st.markdown('### Line Chart of Mean Anomaly Over Time')
     line_chart_period = alt.Chart(df).mark_line().encode(
         x='Epoch:T',
-        y='Period:Q'
+        y='Mean Anomaly:Q'
     ).properties(
         width=600,
         height=400
