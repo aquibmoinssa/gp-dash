@@ -53,24 +53,37 @@ df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentric
 seattle_weather = pd.read_csv('https://raw.githubusercontent.com/tvst/plost/master/data/seattle-weather.csv', parse_dates=['date'])
 stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
 
-c1, c2 = st.columns((7,3))
+# Create a heatmap for Period
+heatmap_period = alt.Chart(df).mark_rect().encode(
+    x=alt.X('yearmonthdate(Epoch):O', title='Date'),
+    y=alt.Y('hoursminutes(Epoch):O', title='Time of Day'),
+    color=alt.Color('Period:Q', scale=alt.Scale(scheme='viridis'), title='Period (minutes)')
+).properties(
+    title='Heatmap of Period Over Time',
+    height=300,
+    width=400  # Adjust width to fit in the column
+)
+
+# Create a heatmap for Eccentricity
+heatmap_eccentricity = alt.Chart(df).mark_rect().encode(
+    x=alt.X('yearmonthdate(Epoch):O', title='Date'),
+    y=alt.Y('hoursminutes(Epoch):O', title='Time of Day'),
+    color=alt.Color('Eccentricity:Q', scale=alt.Scale(scheme='viridis'), title='Eccentricity')
+).properties(
+    title='Heatmap of Eccentricity Over Time',
+    height=300,
+    width=400  # Adjust width to fit in the column
+)
+
+# Create two columns
+c1, c2 = st.columns((5, 5))
+
+# Display the heatmaps in the Streamlit app
 with c1:
-    # Create a heatmap for Eccentricity
-    heatmap_eccentricity = alt.Chart(df).mark_rect().encode(
-        x='yearmonthdate(Epoch):O',
-        y='hour(Epoch):O',
-        color='Eccentricity:Q'
-    ).properties(
-        title='Heatmap of Eccentricity Over Time'
-    )
+    st.altair_chart(heatmap_period, use_container_width=True)
+
 with c2:
-    st.markdown('### Donut chart')
-    plost.donut_chart(
-        data=stocks,
-        theta=donut_theta,
-        color='company',
-        legend='bottom', 
-        use_container_width=True)
+    st.altair_chart(heatmap_eccentricity, use_container_width=True)
 
 # Row C
 # Set up the Streamlit app
