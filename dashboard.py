@@ -102,15 +102,18 @@ with c3:
     st.altair_chart(chart, use_container_width=True)
 
 with c4:
-    st.markdown('### % Change')
-    pie_chart = alt.Chart(percentage_changes).mark_arc().encode(
-        theta=alt.Theta(field='Percentage Change', type='quantitative'),
-        color=alt.Color(field='Parameter', type='nominal'),
-        tooltip=['Parameter', 'Percentage Change']
+    st.markdown('### Line Chart of Mean Motion Parameters Over Time')
+    line_chart_mean_motion = alt.Chart(df).transform_fold(
+        ['Mean Motion', 'Mean Motion Dot', 'Mean Motion ODot'],
+        as_=['Parameter', 'Value']
+    ).mark_line().encode(
+        x='Epoch:T',
+        y='Value:Q',
+        color='Parameter:N'
     ).properties(
-        width=400,
+        width=600,
         height=400
     )
-    st.altair_chart(pie_chart, use_container_width=True)
+    st.altair_chart(line_chart_mean_motion, use_container_width=True)
 
 
