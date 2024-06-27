@@ -59,7 +59,7 @@ c1, c2 = st.columns((5, 5))
 
 with c1:
     st.markdown('### Line Chart of Mean Anomaly Over Time')
-    line_chart_period = alt.Chart(df).mark_line().encode(
+    line_chart_period = alt.Chart(df).mark_line(color='orange').encode(
         x='Epoch:T',
         y='Mean Anomaly:Q'
     ).properties(
@@ -70,7 +70,7 @@ with c1:
 
 with c2:
     st.markdown('### Line Chart of Eccentricity Over Time')
-    line_chart_eccentricity = alt.Chart(df).mark_line().encode(
+    line_chart_eccentricity = alt.Chart(df).mark_line(color='blue').encode(
         x='Epoch:T',
         y='Eccentricity:Q'
     ).properties(
@@ -81,10 +81,10 @@ with c2:
 
 # Row C
 # Set up the Streamlit app
-st.title('Orbital Period of Hubble Space Telescope Over Time')
 
 # Create an Altair chart with customizable height and width
-chart = alt.Chart(df).mark_line().encode(
+st.markdown('### Line Chart of Period Over Time')
+chart = alt.Chart(df).mark_line(color='green').encode(
     x=alt.X('Epoch:T', title='Epoch'),
     y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2]))
 ).properties(
