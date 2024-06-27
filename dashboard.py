@@ -54,35 +54,29 @@ seattle_weather = pd.read_csv('https://raw.githubusercontent.com/tvst/plost/mast
 stocks = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/stocks_toy.csv')
 
 # Create two columns
-c1, c2 = st.columns((7, 3))
+c1, c2 = st.columns((5, 5))
 
 with c1:
-    st.markdown('### Heatmap of Period')
-    plost.time_hist(
-        data=df,
-        date='Epoch',
-        x_unit='week',
-        y_unit='day',
-        color='Period',
-        aggregate='median',
-        legend=None,
-        height=345,
-        use_container_width=True
+    st.markdown('### Line Chart of Period Over Time')
+    line_chart_period = alt.Chart(df).mark_line().encode(
+        x='Epoch:T',
+        y='Period:Q'
+    ).properties(
+        width=600,
+        height=400
     )
+    st.altair_chart(line_chart_period, use_container_width=True)
 
 with c2:
-    st.markdown('### Heatmap of Eccentricity')
-    plost.time_hist(
-        data=df,
-        date='Epoch',
-        x_unit='week',
-        y_unit='day',
-        color='Eccentricity',
-        aggregate='median',
-        legend=None,
-        height=345,
-        use_container_width=True
+    st.markdown('### Line Chart of Eccentricity Over Time')
+    line_chart_eccentricity = alt.Chart(df).mark_line().encode(
+        x='Epoch:T',
+        y='Eccentricity:Q'
+    ).properties(
+        width=600,
+        height=400
     )
+    st.altair_chart(line_chart_eccentricity, use_container_width=True)
 
 # Row C
 # Set up the Streamlit app
