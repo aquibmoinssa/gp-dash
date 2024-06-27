@@ -66,16 +66,6 @@ heatmap_period = alt.Chart(df).mark_rect().encode(
     title='Heatmap of Period Over Time',
     height=300,
     width=400  # Adjust width to fit in the column
-).configure_view(
-    stroke='transparent'  # Remove default border
-).configure_background(
-    color='black'
-).configure_axis(
-    gridColor='white',
-    labelColor='white',
-    titleColor='white'
-).configure_title(
-    color='white'
 )
 
 # Create a heatmap for Eccentricity
@@ -87,16 +77,6 @@ heatmap_eccentricity = alt.Chart(df).mark_rect().encode(
     title='Heatmap of Eccentricity Over Time',
     height=300,
     width=400  # Adjust width to fit in the column
-).configure_view(
-    stroke='transparent'  # Remove default border
-).configure_background(
-    color='black'
-).configure_axis(
-    gridColor='white',
-    labelColor='white',
-    titleColor='white'
-).configure_title(
-    color='white'
 )
 
 
