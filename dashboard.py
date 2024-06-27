@@ -51,6 +51,16 @@ epochs = pd.to_datetime(epochs)
 # Create a DataFrame for easier manipulation
 df = pd.DataFrame({'Epoch': epochs, 'Period': periods, 'Eccentricity': eccentricity, 'Mean Anomaly': mean_anomaly})
 
+# Calculate standard deviations
+std_dev_period = df['Period'].std()
+std_dev_eccentricity = df['Eccentricity'].std()
+std_dev_mean_anomaly = df['Mean Anomaly'].std()
+
+# Create a DataFrame to hold the standard deviations
+std_devs = pd.DataFrame({
+    'Parameter': ['Period', 'Eccentricity', 'Mean Anomaly'],
+    'Standard Deviation': [std_dev_period, std_dev_eccentricity, std_dev_mean_anomaly]
+})
 
 # Create two columns
 c1, c2 = st.columns((5, 5))
@@ -77,17 +87,30 @@ with c2:
     )
     st.altair_chart(line_chart_eccentricity, use_container_width=True)
 
-# Create an Altair chart with customizable height and width
-st.markdown('### Line Chart of Period Over Time')
-chart = alt.Chart(df).mark_line(color='green').encode(
-    x=alt.X('Epoch:T', title='Epoch'),
-    y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2]))
-).properties(
-    height=600,
-    width=400  # Adjust width as well
-)
+# Row C as two columns
+c3, c4 = st.columns((7, 3))
 
-# Display the chart in the Streamlit app
-st.altair_chart(chart, use_container_width=True)
+with c3:
+    st.markdown('### Line Chart of Period Over Time')
+    chart = alt.Chart(df).mark_line(color='green').encode(
+        x=alt.X('Epoch:T', title='Epoch'),
+        y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2]))
+    ).properties(
+        height=400,
+        width=600  # Adjust width as well
+    )
+    st.altair_chart(chart, use_container_width=True)
+
+with c4:
+    st.markdown('### Standard Deviations of Parameters')
+    pie_chart = alt.Chart(std_devs).mark_arc().encode(
+        theta=alt.Theta(field='Standard Deviation', type='quantitative'),
+        color=alt.Color(field='Parameter', type='nominal'),
+        tooltip=['Parameter', 'Standard Deviation']
+    ).properties(
+        width=400,
+        height=400
+    )
+    st.altair_chart(pie_chart, use_container_width=True)
 
 
