@@ -107,7 +107,7 @@ with c4:
     st.markdown('### HST Inclination June 2023 - June 2024')
     line_chart_inclination = alt.Chart(df).mark_line(color='red').encode(
         x=alt.X('Epoch:T', title='Epoch'),
-        y=alt.Y('Inclination:Q', title='Inclination', scale=alt.Scale(domain=[25, 30]))
+        y=alt.Y('Inclination:Q', title='Inclination', scale=alt.Scale(domain=[28, 29]))
     ).properties(
         height=400,
         width=600  # Adjust width as well
