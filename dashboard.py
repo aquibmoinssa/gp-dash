@@ -66,7 +66,7 @@ percentage_changes = pd.DataFrame({
 c1, c2 = st.columns((5, 5))
 
 with c1:
-    st.markdown('### Line Chart of Mean Anomaly Over Time')
+    st.markdown('### HST Mean Anomaly June 2023 - June 2024')
     line_chart_period = alt.Chart(df).mark_line(color='orange').encode(
         x='Epoch:T',
         y='Mean Anomaly:Q'
@@ -77,7 +77,7 @@ with c1:
     st.altair_chart(line_chart_period, use_container_width=True)
 
 with c2:
-    st.markdown('### Line Chart of Eccentricity Over Time')
+    st.markdown('### HST Eccentricity June 2023 - June 2024')
     line_chart_eccentricity = alt.Chart(df).mark_line(color='blue').encode(
         x='Epoch:T',
         y='Eccentricity:Q'
@@ -91,7 +91,7 @@ with c2:
 c3, c4 = st.columns((7, 3))
 
 with c3:
-    st.markdown('### Line Chart of Period Over Time')
+    st.markdown('### HST Orbital Period June 2023 - June 2024')
     chart = alt.Chart(df).mark_line(color='green').encode(
         x=alt.X('Epoch:T', title='Epoch'),
         y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2]))
