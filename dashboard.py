@@ -138,7 +138,7 @@ st.title('Anomaly Detection Using ML')
 st.markdown('### Results')
 anomaly_chart = alt.Chart(df).mark_point().encode(
     x=alt.X('Epoch:T', title='Epoch'),
-    y=alt.Y('Period:Q', title='Period'),
+    y=alt.Y('Period:Q', title='Period', scale=alt.Scale(domain=[90, 100])),
     color=alt.Color('Anomaly:N', scale=alt.Scale(domain=['Normal', 'Anomaly'], range=['green', 'red'])),
     tooltip=['Epoch', 'Period', 'Eccentricity', 'Mean Anomaly', 'Inclination', 'Anomaly']
 ).properties(
