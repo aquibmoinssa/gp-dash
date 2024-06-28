@@ -23,16 +23,6 @@ st.sidebar.subheader('Line chart parameters')
 #plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
 
 
-
-# Row A
-st.markdown('### Most Recent Values:')
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Period", "70 °F", "1.2 °F")
-col2.metric("Eccentricity", "9 mph", "-8%")
-col3.metric("Mean Anomaly", "86%", "4%")
-col4.metric("Inclination", "86%", "4%")
-st.markdown("""<br><br>""", unsafe_allow_html = True)
-
 # Row B
 
 # URL to the JSON file on Google Drive
@@ -65,6 +55,19 @@ df = pd.DataFrame({
     'Mean Motion DDot': mean_motion_ddot,
     'Inclination': inclination
 })
+
+# Row A - Display the most recent values
+st.markdown('### Most Recent Values:')
+col1, col2, col3, col4 = st.columns(4)
+
+# Get the most recent values
+latest_values = df.iloc[-1]
+
+col1.metric("Period", f"{latest_values['Period']:.2f} minutes")
+col2.metric("Eccentricity", f"{latest_values['Eccentricity']:.4f}")
+col3.metric("Mean Anomaly", f"{latest_values['Mean Anomaly']:.2f} degrees")
+col4.metric("Inclination", f"{latest_values['Inclination']:.2f} degrees")
+st.markdown("""<br><br>""", unsafe_allow_html = True)
 
 # Create two columns
 c1, c2 = st.columns((5, 5))
