@@ -24,7 +24,7 @@ st.sidebar.header('Example: Orbital Parameters from TLEs')
 st.sidebar.header('Source: Space-Track.org')
 
 # Sidebar slider to specify plot height
-#plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
+plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
 #plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
 
 
@@ -143,6 +143,6 @@ anomaly_chart = alt.Chart(df).mark_point().encode(
     tooltip=['Epoch', 'Period', 'Eccentricity', 'Mean Anomaly', 'Inclination', 'Anomaly']
 ).properties(
     width=1000,
-    height=400
+    height=plot_height
 )
 st.altair_chart(anomaly_chart, use_container_width=True)
