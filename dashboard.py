@@ -9,7 +9,7 @@ st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     
-st.sidebar.header('GP Dashboard')
+st.sidebar.title('Mission Parameters Dashboard')
 
 #st.sidebar.subheader('Heat map parameters')
 #time_hist_color = st.sidebar.selectbox('Color by', ('temp_min', 'temp_max')) 
@@ -17,7 +17,9 @@ st.sidebar.header('GP Dashboard')
 #st.sidebar.subheader('Donut chart parameters')
 #donut_theta = st.sidebar.selectbox('Select data', ('q2', 'q3'))
 
-st.sidebar.subheader('Line chart parameters')
+st.sidebar.header('ML-powered Anomaly Detection')
+st.sidebar.header('Mission: Hubble Space Telescope')
+
 # Sidebar slider to specify plot height
 #plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
 #plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
