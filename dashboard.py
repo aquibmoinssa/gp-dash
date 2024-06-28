@@ -132,4 +132,15 @@ with c4:
     )
     st.altair_chart(line_chart_inclination, use_container_width=True)
 
-
+# Row D - Anomaly Detection Results
+st.markdown('### Anomaly Detection Results')
+anomaly_chart = alt.Chart(df).mark_point().encode(
+    x='Epoch:T',
+    y='Period:Q',
+    color=alt.Color('Anomaly:N', scale=alt.Scale(domain=['Normal', 'Anomaly'], range=['green', 'red'])),
+    tooltip=['Epoch', 'Period', 'Eccentricity', 'Mean Anomaly', 'Inclination', 'Anomaly']
+).properties(
+    width=1000,
+    height=400
+)
+st.altair_chart(anomaly_chart, use_container_width=True)
