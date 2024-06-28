@@ -75,7 +75,7 @@ df['Anomaly'] = df['Anomaly'].map({1: 'Normal', -1: 'Anomaly'})
 
 # Row A - Display the most recent values
 st.markdown('### Most Recent Values:')
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5 = st.columns(5)
 
 # Get the most recent values
 latest_values = df.iloc[-1]
@@ -84,6 +84,7 @@ col1.metric("Period", f"{latest_values['Period']:.2f} minutes")
 col2.metric("Eccentricity", f"{latest_values['Eccentricity']:.4f}")
 col3.metric("Mean Anomaly", f"{latest_values['Mean Anomaly']:.2f} degrees")
 col4.metric("Inclination", f"{latest_values['Inclination']:.2f} degrees")
+col4.metric("Epoch", f"{latest_values['Epoch']}")
 st.markdown("""<br><br>""", unsafe_allow_html = True)
 
 # Create two columns
