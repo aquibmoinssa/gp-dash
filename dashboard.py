@@ -25,7 +25,11 @@ st.sidebar.header('Source: Space-Track.org')
 st.sidebar.markdown('''
 ---
 ''')
-
+st.sidebar.subheader('Parameter Selection')
+parameter = st.sidebar.selectbox(
+    'Select parameter to visualize anomalies:',
+    ('Period', 'Eccentricity', 'Mean Anomaly', 'Inclination')
+)
 # Sidebar slider for plot controls
 st.sidebar.subheader('ML Plot Controls')
 plot_height = st.sidebar.slider('Plot height', 300, 600, 400)
@@ -140,12 +144,12 @@ with c4:
 st.title('Anomaly Detection Using ML')
 
 # Row D - Anomaly Detection Results
-st.markdown('### Results')
+st.markdown(f'### Anomaly Detection Results for {parameter}')
 anomaly_chart = alt.Chart(df).mark_point().encode(
     x=alt.X('Epoch:T', title='Epoch'),
-    y=alt.Y('Period:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2])),
+    y=alt.Y(f'{parameter}:Q', title='Orbital Period (minutes)', scale=alt.Scale(domain=[94.8, 95.2])),
     color=alt.Color('Anomaly:N', scale=alt.Scale(domain=['Normal', 'Anomaly'], range=['green', 'red'])),
-    tooltip=['Epoch', 'Period', 'Eccentricity', 'Mean Anomaly', 'Inclination', 'Anomaly']
+    tooltip=['Epoch', 'Period', parameter, 'Anomaly']
 ).properties(
     width=plot_width,
     height=plot_height
