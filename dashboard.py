@@ -132,8 +132,10 @@ with c4:
     )
     st.altair_chart(line_chart_inclination, use_container_width=True)
 
+st.title('Anomaly Detection Using ML')
+
 # Row D - Anomaly Detection Results
-st.markdown('### Anomaly Detection Results')
+st.markdown('### Results')
 anomaly_chart = alt.Chart(df).mark_point().encode(
     x='Epoch:T',
     y='Period:Q',
