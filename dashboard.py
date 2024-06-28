@@ -25,7 +25,7 @@ st.sidebar.header('Source: Space-Track.org')
 
 # Sidebar slider to specify plot height
 plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
-#plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
+plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
 
 
 # Row B
@@ -142,7 +142,7 @@ anomaly_chart = alt.Chart(df).mark_point().encode(
     color=alt.Color('Anomaly:N', scale=alt.Scale(domain=['Normal', 'Anomaly'], range=['green', 'red'])),
     tooltip=['Epoch', 'Period', 'Eccentricity', 'Mean Anomaly', 'Inclination', 'Anomaly']
 ).properties(
-    width=1000,
+    width=plot_width,
     height=plot_height
 )
 st.altair_chart(anomaly_chart, use_container_width=True)
