@@ -19,6 +19,8 @@ st.sidebar.title('Mission Parameters Dashboard')
 
 st.sidebar.header('ML-powered Anomaly Detection')
 st.sidebar.header('Mission: Hubble Space Telescope')
+st.sidebar.header('Example: Orbital Parameters from TLEs')
+st.sidebar.header('Source: Space-Track.org')
 
 # Sidebar slider to specify plot height
 #plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
