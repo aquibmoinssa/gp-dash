@@ -22,8 +22,11 @@ st.sidebar.header('ML-powered Anomaly Detection')
 st.sidebar.header('Mission: Hubble Space Telescope')
 st.sidebar.header('Example: Orbital Parameters from TLEs')
 st.sidebar.header('Source: Space-Track.org')
+st.sidebar.markdown('''
+---
+''')
 
-# Sidebar slider to specify plot height
+# Sidebar slider for plot controls
 st.sidebar.subheader('ML Plot Controls')
 plot_height = st.sidebar.slider('Plot height', 300, 600, 400)
 plot_width = st.sidebar.slider('Plot width', 600, 1000, 700)
