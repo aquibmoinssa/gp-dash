@@ -3,6 +3,7 @@ import pandas as pd
 import plost
 import json
 import altair as alt
+from sklearn.ensemble import IsolationForest
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
@@ -59,6 +60,14 @@ df = pd.DataFrame({
     'Mean Motion DDot': mean_motion_ddot,
     'Inclination': inclination
 })
+
+# Train Isolation Forest model for anomaly detection
+features = ['Period', 'Eccentricity', 'Mean Anomaly', 'Inclination']
+model = IsolationForest(contamination=0.05, random_state=42)
+df['Anomaly'] = model.fit_predict(df[features])
+
+# Map anomaly labels to actual values (1 for normal, -1 for anomaly)
+df['Anomaly'] = df['Anomaly'].map({1: 'Normal', -1: 'Anomaly'})
 
 # Row A - Display the most recent values
 st.markdown('### Most Recent Values:')
