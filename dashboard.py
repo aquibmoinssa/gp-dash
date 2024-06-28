@@ -24,8 +24,9 @@ st.sidebar.header('Example: Orbital Parameters from TLEs')
 st.sidebar.header('Source: Space-Track.org')
 
 # Sidebar slider to specify plot height
-plot_height = st.sidebar.slider('Specify plot height', 300, 600, 400)
-plot_width = st.sidebar.slider('Specify plot width', 600, 1000, 700)
+st.sidebar.subheader('ML Plot Controls')
+plot_height = st.sidebar.slider('Plot height', 300, 600, 400)
+plot_width = st.sidebar.slider('Plot width', 600, 1000, 700)
 
 
 # Row B
