@@ -25,11 +25,12 @@ st.sidebar.subheader('Line chart parameters')
 
 
 # Row A
-st.markdown('### Metrics')
-col1, col2, col3 = st.columns(3)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
+st.markdown('### Most Recent Values:')
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Period", "70 °F", "1.2 °F")
+col2.metric("Eccentricity", "9 mph", "-8%")
+col3.metric("Mean Anomaly", "86%", "4%")
+col4.metric("Inclination", "86%", "4%")
 st.markdown("""<br><br>""", unsafe_allow_html = True)
 
 # Row B
